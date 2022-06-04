@@ -36,7 +36,8 @@ OBJS = \
   $K/kernelvec.o \
   $K/plic.o \
   $K/virtio_disk.o \
-
+  $K/sysinfo.o \
+# 添加了一个新的c文件
 ifeq ($(LAB),pgtbl)
 OBJS += $K/vmcopyin.o
 endif
@@ -149,6 +150,8 @@ UPROGS=\
 	$U/_grind\
 	$U/_wc\
 	$U/_zombie\
+	$U/_trace\
+	$U/_sysinfotest\
 
 
 

@@ -295,6 +295,9 @@ fork(void)
 
   np->state = RUNNABLE;
 
+  // 添加trace功能，拷贝parent的trace_mask
+  np->trace_mask = p->trace_mask;
+
   release(&np->lock);
 
   return pid;
@@ -692,4 +695,20 @@ procdump(void)
     printf("%d %s %s", p->pid, state, p->name);
     printf("\n");
   }
+}
+
+
+
+uint64
+gettotalproc(void){
+  uint64 total = 0;
+  struct proc *p;
+  for(p = proc;p < &proc[NPROC]; p++){
+    acquire(&p->lock);
+    if(p->state != UNUSED) {
+      total++;
+    }
+    release(&p->lock);
+  }
+  return total;
 }

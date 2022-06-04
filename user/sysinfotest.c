@@ -113,6 +113,7 @@ void testproc() {
     exit(0);
   }
   wait(&status);
+  // printf("OK OK\n");
   sinfo(&info);
   if(info.nproc != nproc) {
       printf("sysinfotest: FAIL nproc is %d instead of %d\n", info.nproc, nproc);
